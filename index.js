@@ -70,9 +70,10 @@ function gm (source, height, color) {
 
   this.addSrcFormatter(function (src) {
     // must be first source formatter
-
+    var sourceExtension = this.source.split(".").pop()
+    var inputFormatHint = sourceExtension == "jxr" ? "jxr:" : ""
     var inputFromStdin = this.sourceStream || this.sourceBuffer;
-    var ret = inputFromStdin ? '-' : this.source;
+    var ret = inputFromStdin ? inputFormatHint+'-' : this.source;
 
     if (ret && this.sourceFrames) ret += this.sourceFrames;
 
